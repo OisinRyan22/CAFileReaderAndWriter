@@ -64,13 +64,13 @@ public class CAFileReaderAndWriter {
         //Code to get the workload output based off number of classes in the input file
         String workload; 
         int numofclassesInt = Integer.parseInt(numofClasses);
-        if (numofclassesInt == 1) {
+        if (numofclassesInt == 1) {                     //If 1 class
             workload = "Very Light";
-        } else if (numofclassesInt == 2) {
+        } else if (numofclassesInt == 2) {              //If 2 classes
             workload = "Light";
-        } else if (numofclassesInt >= 3 && numofclassesInt <= 5) {
+        } else if (numofclassesInt >= 3 && numofclassesInt <= 5) {          //If 3 to 5 Classes
             workload = "Part-Time";
-        } else {  
+        } else {                        //If 6 to 8 Classes
             workload = "Full-Time";
         }
         
