@@ -4,6 +4,11 @@
  */
 package cafilereaderandwriter;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  *
  * @author ocean
@@ -13,8 +18,16 @@ public class CAFileReaderAndWriter {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+    //https://github.com/OisinRyan22/CAFileReaderAndWriter
+    //Input FilePath("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\students.txt")
+    //Output FilePath ("status.txt")
     
+    public static void main(String[] args) throws IOException {
+        try
+            (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\students.txt"))) {
+           
+          
+            
+    }
+    } 
 }
