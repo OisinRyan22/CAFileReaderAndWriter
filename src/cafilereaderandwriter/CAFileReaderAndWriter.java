@@ -26,8 +26,29 @@ public class CAFileReaderAndWriter {
         try
             (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\students.txt"))) {
            
+            String line; 
+            while ((line = br.readLine()) != null) {
+                String firstName = line.trim();
+                String numofClasses = br.readLine().trim();
+                String studentNum = br.readLine().trim();
+                
+                String[] names = firstName.split(" ", 2);           //Splits first and second name on first line 
+                firstName = names[0];
+                String secondName = (names.length > 1) ? names[1] : "";
+                
+                String error = validateData (firstName, secondName, numofClasses, studentNum);      //Validates data
+                
+                if (error != null) {
+                System.out.println("Data is invalid for" + firstName + " " + secondName + ":");      
+                System.out.println(error);
+                //If validation fails, this output and error message        
+            }
           
             
     }
     } 
 }
+
+    private static String validateData(String firstName, String secondName, String numofClasses, String studentNum) {
+     
+    }
