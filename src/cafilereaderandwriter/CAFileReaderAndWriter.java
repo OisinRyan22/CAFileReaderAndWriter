@@ -18,6 +18,7 @@ public class CAFileReaderAndWriter {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     //https://github.com/OisinRyan22/CAFileReaderAndWriter
     //Input FilePath("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\students.txt")
@@ -48,11 +49,11 @@ public class CAFileReaderAndWriter {
     }
 
     private static String validateData(String firstName, String secondName, String numofClasses, String studentNum) {
-        
-        if (!validName(firstName)) {
+
+        if (!validName1(firstName)) {
             return "Error in first name! Must contain letters only!";       //Validates the first name 
         }
-        if (!validName(secondName)) {
+        if (!validName2(secondName)) {
             return "Error in second name! Must contain letters and/or numbers only!";   //Validates the second name 
         }
         if (!validClasses(numofClasses)) {
@@ -61,9 +62,9 @@ public class CAFileReaderAndWriter {
         if (!validstudentNum(studentNum)) {
             return " Error, invalid student number! Formet 00AAA000....";     //Validates the student number
         }
-        
+
         //Code to get the workload output based off number of classes in the input file
-        String workload; 
+        String workload;
         int numofclassesInt = Integer.parseInt(numofClasses);
         if (numofclassesInt == 1) {                     //If 1 class
             workload = "Very Light";
@@ -74,14 +75,34 @@ public class CAFileReaderAndWriter {
         } else {                        //If 6 to 8 Classes
             workload = "Full-Time";
         }
-        
-        try
-            (FileWriter fw = new FileWriter("status.txt", true)) {
-            fw.write(studentNum + " - " + (secondName !=null ? secondName : "") + "\n" + workload + "\n\n");
+
+        try ( FileWriter fw = new FileWriter("status.txt", true)) {
+            fw.write(studentNum + " - " + (secondName != null ? secondName : "") + "\n" + workload + "\n\n");
         } catch (IOException e) {
-            System.err.println("Error! Failed to write to status.txt file."); 
+            System.err.println("Error! Failed to write to status.txt file.");
         }
         return null;  //If no error 
     }
 
+    public static boolean validName1(String name1) {
+        return name1.matches("[a-zA-z]+");
     }
+
+    public static boolean validName2(String name2) {
+        return name2.matches("[a-zA-Z1-9]+");
+    }
+
+    public static boolean validClasses(String numofClasses) {
+        try {
+            int classes = Integer.parseInt(numofClasses);
+            return classes >= 1 && classes <= 8;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean validstudentNum(String studentNum) {
+        return studentNum.matches("\\d{2}[A-Za-z]{2,}\\d+");
+    }
+
+}
