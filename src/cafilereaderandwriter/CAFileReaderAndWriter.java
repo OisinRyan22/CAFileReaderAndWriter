@@ -61,6 +61,19 @@ public class CAFileReaderAndWriter {
             return " Error, invalid student number! Formet 00AAA000....";     //Validates the student number
         }
         
+        //Code to get the workload output based off number of classes in the input file
+        String workload; 
+        int numofclassesInt = Integer.parseInt(numofClasses);
+        if (numofclassesInt == 1) {
+            workload = "Very Light";
+        } else if (numofclassesInt == 2) {
+            workload = "Light";
+        } else if (numofclassesInt >= 3 && numofclassesInt <= 5) {
+            workload = "Part-Time";
+        } else {  
+            workload = "Full-Time";
+        }
+        
     }
 
     }
