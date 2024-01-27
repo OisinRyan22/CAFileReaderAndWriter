@@ -7,6 +7,7 @@ package cafilereaderandwriter;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -74,6 +75,13 @@ public class CAFileReaderAndWriter {
             workload = "Full-Time";
         }
         
+        try
+            (FileWriter fw = new FileWriter("status.txt", true)) {
+            fw.write(studentNum + " - " + (secondName !=null ? secondName : "") + "\n" + workload + "\n\n");
+        } catch (IOException e) {
+            System.err.println("Error! Failed to write to status.txt file."); 
+        }
+        return null;  //If no error 
     }
 
     }
