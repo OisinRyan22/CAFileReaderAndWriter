@@ -21,10 +21,10 @@ public class CAFileReaderAndWriter {
      * @throws java.io.IOException
      */
     //https://github.com/OisinRyan22/CAFileReaderAndWriter
-    //Input FilePath("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\students.txt")
+    //Input FilePath("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\CAFileReaderAndWriter\\students.txt")
     //Output FilePath ("status.txt")
     public static void main(String[] args) throws IOException {
-        try ( BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\students.txt"))) {
+        try ( BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\CAFileReaderAndWriter\\students.txt"))) {
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -39,7 +39,7 @@ public class CAFileReaderAndWriter {
                 String error = validateData(firstName, secondName, numofClasses, studentNum);      //Validates data
 
                 if (error != null) {
-                    System.out.println("Data is invalid for" + firstName + " " + secondName + ":");
+                    System.out.println("Data is invalid for " + firstName + " " + secondName + ":");
                     System.out.println(error);
                     //If validation fails, this output and error message        
                 }
@@ -60,7 +60,7 @@ public class CAFileReaderAndWriter {
             return "Error in number of classes entered! Must be between 1 and 8!";     //Validates the number of classes
         }
         if (!validstudentNum(studentNum)) {
-            return " Error, invalid student number! Formet 00AAA000....";     //Validates the student number
+            return " Error, student number format must have at least 6 characters starting with 20 - 24, then contain at 2 or 3 letters and end between 0-200";     //Validates the student number
         }
 
         //Code to get the workload output based off number of classes in the input file
@@ -89,7 +89,7 @@ public class CAFileReaderAndWriter {
     }
 
     public static boolean validName2(String name2) {
-        return name2.matches("[a-zA-Z1-9]+");
+        return name2.matches("[a-zA-Z0-9]+");
     }
 
     public static boolean validClasses(String numofClasses) {
@@ -102,7 +102,6 @@ public class CAFileReaderAndWriter {
     }
 
     public static boolean validstudentNum(String studentNum) {
-        return studentNum.matches("(20|21|22|23|24)[A-Za-z]{2,}[0-200]");
-    }
+        return studentNum.matches("(20|21|22|23|24)[A-Za-z]{3}(0|[1-9][0-9]?|1[0-9]{2}|200)");   //Allows for student number to start between 20 to 24, then up to 3 letters and end between the number 0 to 200   }
 
 }
