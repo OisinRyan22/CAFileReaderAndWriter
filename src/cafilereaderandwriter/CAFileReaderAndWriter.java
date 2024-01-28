@@ -5,7 +5,7 @@
 package cafilereaderandwriter;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -76,8 +76,8 @@ public class CAFileReaderAndWriter {
             workload = "Full-Time";
         }
 
-        try ( FileWriter fw = new FileWriter("status.txt", true)) {
-            fw.write(studentNum + " - " + (secondName != null ? secondName : "") + "\n" + workload + "\n\n");
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("status.txt", true))) {
+            bw.write(studentNum + " - " + (secondName != null ? secondName : "") + "\n" + workload + "\n\n");
         } catch (IOException e) {
             System.err.println("Error! Failed to write to status.txt file.");
         }
@@ -102,7 +102,7 @@ public class CAFileReaderAndWriter {
     }
 
     public static boolean validstudentNum(String studentNum) {
-        return studentNum.matches("\\d{2}[A-Za-z]{2,}\\d+");
+        return studentNum.matches("20[2-9]\\d{2}[A-Za-z]{2,}\\d+");
     }
 
 }
