@@ -102,7 +102,7 @@ public class CAFileReaderAndWriter {
     }
 
     public static boolean validstudentNum(String studentNum) {
-        return studentNum.matches("2[1-9]\\d[A-Za-z]{2,}\\d+");
+        return studentNum.matches("(20|21|22|23|24)[A-Za-z]{2,}\\d+");
     }
 
 }
