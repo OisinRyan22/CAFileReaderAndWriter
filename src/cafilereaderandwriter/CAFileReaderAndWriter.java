@@ -30,7 +30,7 @@ public class CAFileReaderAndWriter {
             while ((line = br.readLine()) != null) {
                 String firstName = line.trim();
                 String numofClasses = br.readLine().trim();
-                String studentNum = br.readLine().trim();
+                String studentNum = br.readLine().trim();   
 
                 String[] names = firstName.split(" ", 2);           //Splits first and second name on first line 
                 firstName = names[0];
@@ -76,23 +76,23 @@ public class CAFileReaderAndWriter {
             workload = "Full-Time";
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("status.txt", true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("status.txt", true))) {                      //File writer import and file name 
             bw.write(studentNum + " - " + (secondName != null ? secondName : "") + "\n" + workload + "\n\n");
         } catch (IOException e) {
-            System.err.println("Error! Failed to write to status.txt file.");
+            System.err.println("Error! Failed to write to status.txt file.");     // Error message to appear if writing to file fails 
         }
-        return null;  //If no error 
+        return null;  //If there is no error 
     }
 
     public static boolean validName1(String name1) {
-        return name1.matches("[a-zA-z]+");
+        return name1.matches("[a-zA-z]+");                      //First name is valid if only letter 
     }
 
-    public static boolean validName2(String name2) {
+    public static boolean validName2(String name2) {            //Second name is valid if letters and/or numbers 
         return name2.matches("[a-zA-Z0-9]+");
     }
 
-    public static boolean validClasses(String numofClasses) {
+    public static boolean validClasses(String numofClasses) {       //Number of class is valid if between the numbers 1 to 8
         try {
             int classes = Integer.parseInt(numofClasses);
             return classes >= 1 && classes <= 8;
@@ -102,6 +102,7 @@ public class CAFileReaderAndWriter {
     }
 
     public static boolean validstudentNum(String studentNum) {
-        return studentNum.matches("(20|21|22|23|24)[A-Za-z]{3}(0|[1-9][0-9]?|1[0-9]{2}|200)");   //Allows for student number to start between 20 to 24, then up to 3 letters and end between the number 0 to 200   }
+        return studentNum.matches("(20|21|22|23|24)[A-Za-z]{3}(0|[1-9][0-9]?|1[0-9]{2}|200)");   //Student number is valid if it starts between 20 to 24, then up to 3 letters and end between the number 0 to 200
+    }
 
 }
