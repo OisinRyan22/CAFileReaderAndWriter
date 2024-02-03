@@ -25,23 +25,47 @@ public class CAFileReaderAndWriter {
     //Input FilePath("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\CAFileReaderAndWriter\\students.txt")
     //Output FilePath ("status.txt")
     public static void main(String[] args) throws IOException {
+
+        //Cancelled out console attempt in main method. got too confusing.
+//        try (Scanner sc = new Scanner(System.in)) {
+//            System.out.println("Console Menu:");
+//            System.out.println("Option 1: Validate student.txt file data.");
+//            System.out.println("Option 2: Input data using console to status.txt file.");
+//            System.out.println("Please choose an option by only entering the number 1 or 2: ");
+//            int option = sc.nextInt();
+//            sc.nextLine();
+//            switch (option) {
+//                case 1:
+//                    firstOption();
+//                    break;
+//                case 2:
+//                    consoleMenu(sc);
+//                    break;
+//                default:
+//                    System.out.println("Invalid number choosen. Please choose 1 or 2.");
+
+//            }
+//    }
+//    private static void firstOption() throws IOException {
+
+
         try ( BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ocean\\OneDrive\\Documents\\NetBeansProjects\\CAFileReaderAndWriter\\students.txt"))) {
 
             String line;
             while ((line = br.readLine()) != null) {
                 String firstName = line.trim();
                 String numofClasses = br.readLine().trim();
-                String studentNum = br.readLine().trim();   
+                String studentNum = br.readLine().trim();
 
                 String[] names = firstName.split(" ", 2);           //Splits first and second name on first line 
                 firstName = names[0];
                 String secondName = (names.length > 1) ? names[1] : "";
 
-                String error = validateData(firstName, secondName, numofClasses, studentNum);      //Validates data
+                String invalid = validateData(firstName, secondName, numofClasses, studentNum);      //Validates data
 
-                if (error != null) {
+                if (invalid != null) {
                     System.out.println("Data is invalid for " + firstName + " " + secondName + ":");
-                    System.out.println(error);
+                    System.out.println(invalid);
                     //If validation fails, this output and error message        
                 }
 
@@ -77,7 +101,7 @@ public class CAFileReaderAndWriter {
             workload = "Full-Time";
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("status.txt", true))) {                      //File writer import and file name 
+        try ( BufferedWriter bw = new BufferedWriter(new FileWriter("status.txt", true))) {                      //File writer import and file name 
             bw.write(studentNum + " - " + (secondName != null ? secondName : "") + "\n" + workload + "\n\n");
         } catch (IOException e) {
             System.err.println("Error! Failed to write to status.txt file.");     // Error message to appear if writing to file fails 
@@ -105,19 +129,39 @@ public class CAFileReaderAndWriter {
     public static boolean validstudentNum(String studentNum) {
         return studentNum.matches("(20|21|22|23|24)[A-Za-z]{3}(0|[1-9][0-9]?|1[0-9]{2}|200)");   //Student number is valid if it starts between 20 to 24, then up to 3 letters and end between the number 0 to 200
     }
+
+//    public static void consoleMenu(String[] args) {
+//        try (Scanner sc = new Scanner(System.in)) {
+//            System.out.println("Console Menu:");
+//            System.out.println("Option 1: Validate student.txt file data.");
+//            System.out.println("Option 2: Input data using console to status.txt file.");
+//            System.out.println("Please choose an option by only entering the number 1 or 2: ");
+//            int option = sc.nextInt();
+//            sc.nextLine();
+    //Trying to get console to work.
+    //Moving console to main method and working down.
+//    private static void consoleMenu(Scanner sc) {
+//        System.out.print("Please enter a first and second name: ");
+//        String firstName = sc.nextLine();
+//        
+//        System.out.print("Please enter the number of classes: ");
+//        String numofClasses = sc.nextLine();
+//        
+//        System.out.print("Please enter a student number: ");
+//        String studentNum = sc.nextLine();
+//        
+//         String[] names = firstName.split(" ", 2);           //Splits first and second name on first line 
+//                firstName = names[0];
+//                String secondName = (names.length > 1) ? names[1] : "";
+//                
+//                String invalid = validateData(firstName, secondName, numofClasses, studentNum);
+//                
+//                if (invalid == null) {
+//                    System.out.print("Data is valid. Writing to status.txt");
     
-    public static void consoleMenu(String[] args) {
-        try (Scanner sc = new Scanner(System.in)) {
-            System.out.println("Console Menu:");
-            System.out.println("Option 1: Validate student.txt file data.");
-            System.out.println("Option 2: Input data using console to status.txt file.");
-            System.out.println("Please choose an option by only entering the number 1 or 2: ");
-            int option = sc.nextInt();
-            sc.nextLine();
-            
-            }
-        }
-        
-    }
+                //Tried making a console menu but got confused and the code got too messy for me.
+    
+    
+}
 
 
