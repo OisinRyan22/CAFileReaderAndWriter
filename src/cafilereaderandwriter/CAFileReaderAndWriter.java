@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  *
@@ -104,5 +105,19 @@ public class CAFileReaderAndWriter {
     public static boolean validstudentNum(String studentNum) {
         return studentNum.matches("(20|21|22|23|24)[A-Za-z]{3}(0|[1-9][0-9]?|1[0-9]{2}|200)");   //Student number is valid if it starts between 20 to 24, then up to 3 letters and end between the number 0 to 200
     }
+    
+    public static void consoleMenu(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("Console Menu:");
+            System.out.println("Option 1: Validate student.txt file data.");
+            System.out.println("Option 2: Input data using console to status.txt file.");
+            System.out.println("Please choose an option by only entering the number 1 or 2: ");
+            int option = sc.nextInt();
+            sc.nextLine();
+            
+            }
+        }
+        
+    }
 
-}
+
